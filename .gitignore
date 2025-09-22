@@ -1,0 +1,8 @@
+# Ezt a mappát ne töltse fel
+NextJSBlogCMS/
+
+# Egyéb tipikus kizárások
+node_modules/
+.env
+.idea/
+.DS_Store
