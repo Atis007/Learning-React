@@ -145,6 +145,10 @@ button {
   animation: l5 1s infinite linear alternate;
 }
 
+.products-page > .loader-wrapper {
+  margin-top: 60px;
+}
+
 @keyframes l5 {
     0%  {box-shadow: 15px 0 #000, -15px 0 #0002;background: #000 }
     33% {box-shadow: 15px 0 #000, -15px 0 #0002;background: #0002}

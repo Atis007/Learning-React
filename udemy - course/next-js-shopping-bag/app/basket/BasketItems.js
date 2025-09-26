@@ -105,9 +105,9 @@ export default function BasketItems() {
           </table>
 
           <section className={styles["basket-options"]}>
-            <button className="outline">Empty Basket</button>
+            <button className="outline" onClick={handleEmptyBasket}>Empty Basket</button>
             <Link href="/products">
-              <button className="outline" onClick={handleEmptyBasket}>
+              <button className="outline">
                 Continue Shopping
               </button>
             </Link>
