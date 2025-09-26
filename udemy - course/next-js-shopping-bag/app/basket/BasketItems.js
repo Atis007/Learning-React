@@ -3,6 +3,7 @@ import styles from "./basketItems.module.css";
 import { useBasket } from "../context/BasketContext";
 import Link from "next/link";
 import { formatPrice } from "../util";
+import Image from "next/image";
 
 export default function BasketItems() {
   const { removeFromBag, updateQuantity, emptyBasket, items } = useBasket();
@@ -45,7 +46,7 @@ export default function BasketItems() {
               {items.map((item) => (
                 <tr key={item.id}>
                   <td>
-                    <img
+                    <Image
                       src={item.thumbnail}
                       alt={`item image - ${item.title}`}
                       width={50}

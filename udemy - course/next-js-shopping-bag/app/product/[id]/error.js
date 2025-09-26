@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function error({reset}) {
+export default function Error({reset}) {
     const router = useRouter();
   return (
     <div className="container error-page">
