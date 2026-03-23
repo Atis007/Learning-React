@@ -1,5 +1,6 @@
-# Ezt a mappát ne töltse fel
+# Ezeket a mappákat ne töltse fel
 NextJSBlogCMS/
+claude-code/
 
 # Egyéb tipikus kizárások
 node_modules/
