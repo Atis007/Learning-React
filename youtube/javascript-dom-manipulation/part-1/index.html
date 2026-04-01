@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master DOM Manipulation: Part 1</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+      * {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(#0f2027, #203a43, #2c5364);
+        height: 100vh;
+        font-family: "Lato", sans-serif;
+        border: solid 15px #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #container {
+        width: 92%;
+        max-width: 700px;
+        border: 4px solid #fff;
+        border-radius: 20px;
+        padding: 42px 38px;
+      }
+
+      #main-heading {
+        color: #fff;
+        font-size: 58px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 30px;
+      }
+
+      ul {
+        font-size: 43px;
+        text-align: center;
+      }
+
+      .list-items {
+        background: #d3d3d3;
+        color: #101010;
+        border: solid 2px #222;
+        padding: 10px 10px;
+        cursor: pointer;
+      }
+
+      section {
+        width: 100%;
+        max-width: 980px;
+        margin: 36px auto 0;
+        padding: 8px 12px 24px;
+      }
+
+      section h1 {
+        color: #f2f5f7;
+        font-size: 64px;
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        gap: 88px;
+        flex-wrap: wrap;
+      }
+
+      .boxes {
+        width: 220px;
+        min-height: 280px;
+        border: 3px solid #dce6ea;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 44px 20px 58px;
+      }
+
+      .heading {
+        color: #e4ebee;
+        font-size: 46px;
+        margin: 0;
+      }
+
+      section button {
+        font-family: inherit;
+        font-size: 26px;
+        color: #e4ebee;
+        background: transparent;
+        border: 3px solid #dce6ea;
+        border-radius: 12px;
+        padding: 8px 28px;
+        cursor: pointer;
+      }
+
+      .reveal-btn {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .hidden-content {
+        max-width: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-width 0.6s ease,
+          opacity 0.6s ease;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #e4ebee;
+        padding: 0 20px;
+      }
+
+      .hidden-content.show {
+        max-width: 500px;
+        opacity: 1;
+      }
+
+      @media (max-width: 800px) {
+        section h1 {
+          font-size: 42px;
+          margin-bottom: 28px;
+        }
+
+        .container {
+          gap: 24px;
+        }
+
+        .boxes {
+          width: min(100%, 320px);
+          min-height: 220px;
+          padding: 24px 14px 32px;
+        }
+
+        .heading {
+          font-size: 34px;
+        }
+
+        section button {
+          font-size: 20px;
+        }
+
+        .hidden-content.show {
+          max-width: 100%;
+        }
+      }
+
+      .div2 {
+        width: min(92vw, 360px);
+        min-height: 420px;
+        border: 8px solid #eef4f7;
+        border-radius: 14px;
+        color: #eef4f7;
+        font-size: 62px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .div1 {
+        width: min(72vw, 200px);
+        min-height: 200px;
+        border: 5px solid #eef4f7;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .div1 button {
+        font-family: inherit;
+        font-size: 42px;
+        line-height: 1;
+        color: #e4ebee;
+        background: transparent;
+        border: 3px solid #dce6ea;
+        border-radius: 12px;
+        padding: 10px 26px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 800px) {
+        .div2 {
+          min-height: 320px;
+          font-size: 48px;
+          border-width: 6px;
+        }
+
+        .div1 {
+          min-height: 170px;
+          border-width: 4px;
+        }
+
+        .div1 button {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div id="container">
+      <h1 id="main-heading">Favourite Movie Franchise</h1>
+
+      <ul>
+        <li class="list-items"><span>Neo</span>The Matrix</li>
+        <li class="list-items">Star Wars</li>
+        <li class="list-items">Harry Potter</li>
+        <li class="list-items">Lord of the Rings</li>
+        <li class="list-items">Marvel</li>
+      </ul>
+    </div> -->
+
+    <!-- <section>
+      <h1 id="main-heading">Event Listeners</h1>
+
+      <div class="container">
+        <div class="boxes box-1">
+          <h1 class="heading">Example 1</h1>
+          <button onClick="alert('Example 1 clicked!')">Enter</button>
+        </div>
+
+        <div class="boxes box-2">
+          <h1 class="heading">Example 2</h1>
+          <button class="btn-2">Enter</button>
+        </div>
+
+        <div class="boxes box-3">
+          <h1 class="heading">Example 3</h1>
+          <button class="btn-3">Enter</button>
+        </div>
+      </div>
+
+      <div class="container">
+        <button class="reveal-btn boxes">Reveal More</button>
+
+        <div class="hidden-content boxes">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
+          voluptate! Molestias, voluptate. Quida voluptas voluptate! Molestias,
+          voluptate. Quidatibus, voluptate! Molestias, voluptate. Quida voluptas
+          voluptate! Molestias, voluptate. Quidatibus, voluptate! Molestias,
+          voluptate. Quida voluptas voluptate! Molestias, voluptate. Quidatibus,
+          voluptate! Molestias, voluptate. Quida voluptas voluptate!
+        </div>
+      </div>
+    </section> -->
+
+    <div class="div2">
+      2
+      <div class="div1">
+        1
+        <button>Click</button>
+      </div>
+    </div>
+
+    <ul id="sports">
+      <li id="football">Football</li>
+      <li id="basketball">basketball</li>
+      <li id="boxing">boxing</li>
+      <li id="tennis">tennis</li>
+      <li id="golf">golf</li>
+    </ul>
+  </body>
+
+  <script type="module" src="app.js"></script>
+</html>
